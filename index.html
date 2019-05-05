@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        #root {
+            display: flex;
+            flex-direction: column;
+        }
+
+        button#run {
+            margin: 3rem;
+            height: 5rem;
+            font-size: 3rem;
+        }
+
+        #container {
+            display: flex;
+            flex-flow: row;
+            height: 80vh;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        #container #img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            flex-shrink: 0;
+        }
+
+        #container #img .img-bg {
+            width: 50vw;
+            height: 100%;
+            background-position: 50%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        #container #num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: monospace;
+            font-size: 32rem;
+            flex-grow: 1;
+            flex-shrink: 0;
+            width: 50vw;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div id="container">
+            <div id="img"><div class="img-bg"></div></div>
+            <div id="num"></div>
+        </div>
+        <button id="run">Go!</button>
+    </div>
+    <script>
+        (function() {
+            var images = [
+                "img/BB_junior_boy.jpg",
+                "img/BB_junior_girl.jpg",
+                "img/BB_senior_boy.jpg",
+                "img/BB_senior_girl.jpg"
+            ];
+            var numbers = [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+            ];
+            var imgEl = document.querySelector("#img .img-bg");
+            var numEl = document.querySelector("#num");
+
+            function draw() {
+                var ranImgIdx = Math.floor(Math.random() * images.length);
+                var ranNumIdx = Math.floor(Math.random() * numbers.length);
+
+                imgEl.style.backgroundImage = "url(" + images[ranImgIdx] + ")";
+                numEl.textContent = numbers[ranNumIdx];
+            }
+
+            document.querySelector("button#run").onclick = function() {
+                draw();
+            };
+
+            document.onkeypress = function(e) {
+                if (e.code === "Enter") {
+                    draw();
+                }
+            }
+        })();
+    </script>
+</body>
+</html>
